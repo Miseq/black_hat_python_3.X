@@ -40,7 +40,7 @@ def main():
         print("[*] Accepted connection from ", addr[0], ":", addr[1])
 
         # spin up client thread to handle incoming data
-        client_handler = threading.Thread(target=handle_client(), args=(client, ))
+        client_handler = threading.Thread(target=handle_client, args=(client, ))
 
 
 if __name__ == '__main__':

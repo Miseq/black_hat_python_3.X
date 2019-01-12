@@ -10,9 +10,20 @@ Krzysztof Nowakowski
 
 import socket
 import pprint
+import argparse
 
-target_host = "www.google.com"
-target_port = 80
+
+parser = argparse.ArgumentParser(description="Simple TCP client")
+parser.add_argument('--local', dest="local", required=False)
+# Zakładam że używamy domyślnych wartości serwera TCP z książki, w przypadku dynamicznych trzeba byłoby przemodelować projekt
+args = parser.parse_args()
+
+if args.local:
+    target_host = "0.0.0.0"
+    target_port = 9999
+else:
+    target_host = "www.google.com"
+    target_port = 80
 
 client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 # AF_INET - standarodowy IPv4 adres albo nazwa hosta, sock_stream oznacza że będzie to standarodowy klient TCP
